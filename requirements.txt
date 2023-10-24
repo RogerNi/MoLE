@@ -1,0 +1,6 @@
+numpy
+matplotlib
+pandas
+scikit-learn
+torch==1.9.0
+einops
