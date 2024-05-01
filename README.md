@@ -1,6 +1,6 @@
-# Mixture-of-Linear-Experts for Long-term Time Series Forecasting (MoLE)
+# MoLE (AISTATS 2024)
 
-This is the official implementation of the paper "Mixture-of-Linear-Experts for Long-term Time Series Forecasting".
+This is the official implementation of the paper "Mixture-of-Linear-Experts for Long-term Time Series Forecasting". [[arXiv]](https://arxiv.org/abs/2312.06786) [[PMLR]](https://proceedings.mlr.press/v238/ni24a.html)
 
 ## Requirements
 
@@ -46,3 +46,15 @@ https://github.com/cure-lab/LTSF-Linear
 
 https://github.com/plumprc/RTSF
 
+## Citation
+If you find our work useful, please consider citing our paper using the following BibTeX:
+```
+@inproceedings{ni2024mixture,
+  title={Mixture-of-Linear-Experts for Long-term Time Series Forecasting},
+  author={Ni, Ronghao and Lin, Zinan and Wang, Shuaiqi and Fanti, Giulia},
+  booktitle={International Conference on Artificial Intelligence and Statistics},
+  pages={4672--4680},
+  year={2024},
+  organization={PMLR}
+}
+```
