@@ -197,18 +197,11 @@ if args.is_training:
         print('>>>>>>>testing for training losses : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
         exp.test(setting, flag='train')     
         
-        if args.use_best_head_in_testing_time:
-            print('>>>>>>>testing for vali losses (using best_head) : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
-            best_head = exp.test(setting, flag='val', seperate_head=True)        
+        print('>>>>>>>testing for vali losses : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
+        exp.test(setting, flag='val')        
 
-            print('>>>>>>>testing (using best head {}) : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(best_head, setting))
-            exp.test(setting, fixed_head=best_head)
-        else:
-            print('>>>>>>>testing for vali losses : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
-            exp.test(setting, flag='val')        
-
-            print('>>>>>>>testing : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
-            exp.test(setting)
+        print('>>>>>>>testing : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
+        exp.test(setting)
 
         if args.do_predict:
             print('>>>>>>>predicting : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
