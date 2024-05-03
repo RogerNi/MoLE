@@ -1,7 +1,6 @@
-from MoLE.models import MoLE_DLinear, MoLE_RLinear, MoLE_RMLP
+from models import MoLE_DLinear, MoLE_RLinear, MoLE_RMLP
 from data_provider.data_factory import data_provider
 from exp.exp_basic import Exp_Basic
-from MoLE.models import MoLE_RMLP
 from utils.tools import EarlyStopping, adjust_learning_rate, visual, test_params_flop
 from utils.metrics import metric as get_metric
 
@@ -65,7 +64,7 @@ class Exp_Main(Exp_Basic):
                 dec_inp = torch.zeros_like(batch_y[:, -self.args.pred_len:, :]).float()
                 dec_inp = torch.cat([batch_y[:, :self.args.label_len, :], dec_inp], dim=1).float().to(self.device)
                 # encoder - decoder
-                if 'T' in self.args.model and ('Linear' in self.args.model or 'MLP' in self.args.model or 'FITS' in self.args.model):
+                if 'MoLE' in self.args.model and ('Linear' in self.args.model or 'MLP' in self.args.model):
                     outputs = self.model(batch_x, batch_x_mark)
                 elif 'former' not in self.args.model:
                         outputs = self.model(batch_x)
@@ -152,7 +151,7 @@ class Exp_Main(Exp_Basic):
                 dec_inp = torch.cat([batch_y[:, :self.args.label_len, :], dec_inp], dim=1).float().to(self.device)
 
                 # encoder - decoder
-                if 'T' in self.args.model and ('Linear' in self.args.model or 'MLP' in self.args.model or 'FITS' in self.args.model):
+                if 'MoLE' in self.args.model and ('Linear' in self.args.model or 'MLP' in self.args.model):
                     outputs = self.model(batch_x, batch_x_mark)
                 elif 'former' not in self.args.model:
                         outputs = self.model(batch_x)
@@ -236,7 +235,7 @@ class Exp_Main(Exp_Basic):
                 dec_inp = torch.cat([batch_y[:, :self.args.label_len, :], dec_inp], dim=1).float().to(self.device)
                 # encoder - decoder
                 
-                if 'T' in self.args.model and ('Linear' in self.args.model or 'MLP' in self.args.model or 'FITS' in self.args.model):
+                if 'MoLE' in self.args.model and ('Linear' in self.args.model or 'MLP' in self.args.model):
                     if self.args.save_gating_weights:
                         outputs, gating_weights = self.model(batch_x, batch_x_mark, return_gating_weights=True, return_seperate_head=seperate_head or fixed_head is not None)
                         time_embeds.append(gating_weights.detach().cpu().numpy())
@@ -343,7 +342,7 @@ class Exp_Main(Exp_Basic):
                 dec_inp = torch.zeros([batch_y.shape[0], self.args.pred_len, batch_y.shape[2]]).float().to(batch_y.device)
                 dec_inp = torch.cat([batch_y[:, :self.args.label_len, :], dec_inp], dim=1).float().to(self.device)
                 # encoder - decoder
-                if 'T' in self.args.model and ('Linear' in self.args.model or 'MLP' in self.args.model or 'FITS' in self.args.model):
+                if 'MoLE' in self.args.model and ('Linear' in self.args.model or 'MLP' in self.args.model):
                     outputs = self.model(batch_x, batch_x_mark)
                 elif 'former' not in self.args.model:
                         outputs = self.model(batch_x)

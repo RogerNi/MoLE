@@ -161,7 +161,7 @@ Exp = Exp_Main
 if args.is_training:
     for ii in range(args.itr):
         # setting record of experiments
-        setting = '{}_{}_{}_ft{}_sl{}_ll{}_pl{}_dm{}_nh{}_el{}_dl{}_df{}_fc{}_eb{}_dt{}_{}_{}_{}_{}_{}_{}_{}_sd{}_hd{}_fr{}_tsr{}_rr{}_rbr{}_ew{}_bh{}'.format(
+        setting = '{}_{}_{}_ft{}_sl{}_ll{}_pl{}_dm{}_nh{}_el{}_dl{}_df{}_fc{}_eb{}_dt{}_{}_{}_{}_{}_{}_{}_{}_sd{}_hd{}'.format(
             args.model_id,
             args.model,
             args.data,
@@ -178,13 +178,7 @@ if args.is_training:
             args.embed,
             args.distil,
             args.des, ii, args.batch_size, args.t_dim, args.aug_method, args.aug_rate, args.learning_rate, args.seed,
-            args.head_dropout, 
-            args.use_fixed_routing,
-            args.use_time_series_routing,
-            args.use_random_routing,
-            args.use_random_bypass_routing,
-            args.use_equal_weighting_in_testing_time,
-            args.use_best_head_in_testing_time)
+            args.head_dropout,)
 
         exp = Exp(args)  # set experiments
         if args.show_num_parameters_only:

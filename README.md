@@ -8,7 +8,9 @@ Please refer to the `requirements.txt` file for the required packages.
 
 ## Datasets
 
-All datasets we used in our experiments are available at this [Google Drive's shared folder](https://drive.google.com/drive/folders/1ZhaQwLYcnhT5zEEZhBTo03-jDwl7bt7v). These datasets were first provided in Autoformer. Please download the datasets and put them in the `dataset` folder. Each dataset is an `.csv` file.
+All datasets we used in our experiments (except Weather2K) are available at this [Google Drive's shared folder](https://drive.google.com/drive/folders/1ZhaQwLYcnhT5zEEZhBTo03-jDwl7bt7v). These datasets were first provided in Autoformer. Please download the datasets and put them in the `dataset` folder. Each dataset is an `.csv` file.
+
+Weather2K dataset is available at this [GitHub repository](https://github.com/bycnfz/weather2k).
 
 ## Usage
 
@@ -17,34 +19,26 @@ All datasets we used in our experiments are available at this [Google Drive's sh
 To run the main experiments, please run the following command:
 
 ```bash
-MoE_scripts/run_all_3_seeds.sh
+scripts/run_all_3_seeds.sh
 ```
 
 This scripts sequentially runs the main experiments on all datasets with 3 different random seeds. The results will be saved in the `logs` folder.
 
-### RandomIn/RandomOut Experiments
+### Additional Experiments
 
-To run the RandomIn/RandomOut experiments, please refer to `MoE_scripts/ablations/[experiments]`. The experiments includes:
- - original_routing: Original experiments
- - head_dropout: Original experiments with head dropout
- - random_bypass: RandomOut experiments
- - random_bypass_dropout: RandomOut experiments with head dropout
- - random_routing: RandomIn experiments
- - random_routing_dropout: RandomIn experiments with head dropout
-
-### Short Input Length Experiments
-
-To run the short input length experiments, please refer to `MoE_scripts/ablations/run_all_short_seq_len.sh`.
+The repository has been cleaned up for easier usage. If you want to run ablation experiments, please refer to earlier commits.
 
 ## Acknowledgement
 
-We thank the authors of the following repositories for their open-source code, which we used in our experiments:
+We thank the authors of the following repositories for their open-source code or dataset, which we used in our experiments:
 
 https://github.com/zhouhaoyi/Informer2020
 
 https://github.com/cure-lab/LTSF-Linear
 
 https://github.com/plumprc/RTSF
+
+https://github.com/bycnfz/weather2k
 
 ## Citation
 If you find our work useful, please consider citing our paper using the following BibTeX:
