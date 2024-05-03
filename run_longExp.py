@@ -127,14 +127,6 @@ parser.add_argument('--seed', type=int, default=2021, help='random seed')
 parser.add_argument('--wo_original_set', action='store_true', help='without original train set')
 parser.add_argument('--test_time_train', type=bool, default=False, help='Affect data division')
 
-# ablations
-parser.add_argument('--use_fixed_routing', action='store_true', help='use fixed routing')
-parser.add_argument('--use_time_series_routing', action='store_true', help='use time series routing')
-parser.add_argument('--use_random_routing', action='store_true', help='use random numbers for routing')
-parser.add_argument('--use_random_bypass_routing', action='store_true', help='use random numbers, bypassing routing layer')
-parser.add_argument('--use_equal_weighting_in_testing_time', action='store_true', help='use equal weighting for routing during testing time')
-parser.add_argument('--use_best_head_in_testing_time', action='store_true', help='use best head for routing during testing time')
-
 # output
 parser.add_argument('--save_gating_weights', type=str, help='save gating weights')
 

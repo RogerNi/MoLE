@@ -1,6 +1,7 @@
+from MoLE.models import MoLE_DLinear, MoLE_RLinear, MoLE_RMLP
 from data_provider.data_factory import data_provider
 from exp.exp_basic import Exp_Basic
-from models import TDLinear, TRLinear, TRMLP
+from MoLE.models import MoLE_RMLP
 from utils.tools import EarlyStopping, adjust_learning_rate, visual, test_params_flop
 from utils.metrics import metric as get_metric
 
@@ -27,9 +28,9 @@ class Exp_Main(Exp_Basic):
 
     def _build_model(self):
         model_dict = {
-            'TDLinear': TDLinear,
-            'TRLinear': TRLinear,
-            'TRMLP': TRMLP,
+            'MoLE_DLinear': MoLE_DLinear,
+            'MoLE_RLinear': MoLE_RLinear,
+            'MoLE_RMLP': MoLE_RMLP,
         }
         model = model_dict[self.args.model].Model(self.args).float()
 
@@ -263,11 +264,6 @@ class Exp_Main(Exp_Basic):
                 preds.append(pred)
                 trues.append(true)
                 inputx.append(batch_x.detach().cpu().numpy())
-                # if i % 20 == 0:
-                #     input = batch_x.detach().cpu().numpy()
-                #     gt = np.concatenate((input[0, :, -1], true[0, :, -1]), axis=0)
-                #     pd = np.concatenate((input[0, :, -1], pred[0, :, -1]), axis=0)
-                #     visual(gt, pd, os.path.join(folder_path, str(i) + '.pdf'))
 
         if self.args.test_flop:
             test_params_flop((batch_x.shape[1],batch_x.shape[2]))

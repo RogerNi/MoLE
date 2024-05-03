@@ -1,1 +1,0 @@
-Random Output of gating layer with dropout on heads. At testing time, use equal weights/best head (determined by val losses) for all heads.

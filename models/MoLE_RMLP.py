@@ -41,26 +41,16 @@ class Model(nn.Module):
     def forward(self, x, x_mark, return_gating_weights=False, return_seperate_head=False):
         # x: [B, L, D]
         x_mark_initial = x_mark[:,0]
-        # print(x_mark_initial.shape)
         x = self.rev(x, 'norm') if self.rev else x
         x = x + self.temporal(x.transpose(1, 2)).transpose(1, 2)
-        # x_mark_initial = self.dropout(x_mark_initial)
-        if self.individual:
-            y_shape = [x.size(0),self.pred_len,x.size(1)]
-            pred = torch.zeros((y_shape[0], y_shape[1] * self.num_predictions, y_shape[2])).to(x.device)
-            for idx, proj in enumerate(self.Linear):
-                pred[:, :, idx] = proj(x[:, :, idx])
-        else:
-            pred = self.Linear(x.transpose(1, 2)).transpose(1, 2)
+        pred = self.Linear(x.transpose(1, 2)).transpose(1, 2)
             
-        # print(pred.shape)
         temporal_out = self.Linear_Temporal(x_mark_initial).reshape(-1, self.num_predictions, self.channels)
         temporal_out = self.head_dropout(temporal_out)
         temporal_out = nn.Softmax(dim=1)(temporal_out)
         pred_raw = pred.permute(0, 2, 1).reshape(-1, self.channels, self.pred_len, self.num_predictions).permute(0, 3, 1, 2)
         pred = pred_raw * temporal_out.unsqueeze(-1)
         pred = pred.sum(dim=1).permute(0,2,1)
-        # .squeeze(2).reshape(-1, self.channels, self.pred_len).permute(0,2,1)
         
         pred = self.rev(pred, 'denorm') if self.rev else pred
 
