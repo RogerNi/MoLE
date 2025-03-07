@@ -1,6 +1,5 @@
 #!/bin/bash
 
-cd $(dirname $0)/..
 
 
 if [[ -z "${SEQ_LEN}" ]]; then
